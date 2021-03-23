@@ -3,7 +3,7 @@ console.log('----------')
 console.log('Loading BetaCalendar.js')
 
 function BetaCalendar(selector, draggable = "false", minimizable = "false", type = "basic") {
-	let _self = {};
+	const _self = {};
 	_self.selector = selector;
 	_self.accessElement = document.querySelector(selector);
 
@@ -346,9 +346,6 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		if(_self.calendar.currentReminder.date === null || _self.calendar.currentReminder.label === null) {
 			alert("Please fill in all the required information to set a reminder!");
 
-			_self.calendar.currentReminder.date = null;
-			_self.calendar.currentReminder.label = null;
-
 			return false;
 		} else {
 			const newReminder = {
@@ -409,7 +406,8 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 
 	_self.importReminders = function (reminders) {
 		_self.calendar.reminders = reminders;
-		_self.updateCalendar(_self.calendar.currentPageDate, true); 
+		_self.updateCalendar(_self.calendar.currentPageDate, false);
+		_self.calendar.container.style.display = "none";  
 	}
 
 	_self.exportReminders = function () {
@@ -642,14 +640,14 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		}
 	}
 
-	_self.initCalendar();
-	_self.updateCalendar(_self.calendar.currentPageDate, true);
-
 	if (_self.accessElement) {
 		_self.accessElement.addEventListener("click", _self.toggleCalendar)
 	}
 
-	return _self
+	_self.initCalendar();
+	_self.updateCalendar(_self.calendar.currentPageDate, true);
+
+	return _self;
 }
 
 

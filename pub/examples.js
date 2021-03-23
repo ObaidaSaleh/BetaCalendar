@@ -26,10 +26,14 @@ function example() {
   ]
 
 
-  BetaCalendar("#normalCalendar", false, false, "basic");
-  BetaCalendar("#minimizableCalendar", false, true, "basic");
-  BetaCalendar("#miniAndDragCalendar", true, true, "basic");
-  // BetaCalendar("#importedRemindersCalendar", true, true, "basic").importReminders(reminders);
+  const calendar1 = BetaCalendar("#normalCalendar", false, false, "basic");
+  const calendar2 = BetaCalendar("#minimizableCalendar", false, true, "basic");
+  const calendar3 = BetaCalendar("#miniAndDragCalendar", true, true, "basic");
+  const calendar4 = BetaCalendar("#importedRemindersCalendar", true, true, "basic");
+
+  calendar4.importReminders(reminders);
+
+  // console.log(calendar4.exportReminders());
 }
 
 example();
