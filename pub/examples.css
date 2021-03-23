@@ -1,4 +1,8 @@
-﻿.sidebar {
+﻿body {
+    font-family: Roboto, Arial, Helvetica, sans-serif; 
+}
+
+.sidebar {
     background-color:#4db8ff;
     height:100%;
     width:300px;
