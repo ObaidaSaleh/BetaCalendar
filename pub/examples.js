@@ -31,6 +31,16 @@ function example() {
   const calendar3 = BetaCalendar("#miniAndDragCalendar", true, true, "basic");
   const calendar4 = BetaCalendar("#importedRemindersCalendar", true, true, "basic");
 
+  const calendar5 = BetaCalendar("#nightCalendar", false, false, "basic", 
+  {
+		main: "#006bb3",
+    secondary: "#404040",
+		background: "#121212",
+		cells: "#181818",
+		text: "white"
+	}
+  );
+
   calendar4.importReminders(reminders);
 
   // console.log(calendar4.exportReminders());

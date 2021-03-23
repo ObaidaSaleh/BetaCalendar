@@ -2,8 +2,19 @@
 console.log('----------')
 console.log('Loading BetaCalendar.js')
 
-function BetaCalendar(selector, draggable = "false", minimizable = "false", type = "basic") {
-	const _self = {};
+function BetaCalendar(selector, 
+	draggable = "false", 
+	minimizable = "false", 
+	type = "basic", 
+    theme= {
+		main: "#99d6ff",
+		secondary: "#a6a6a6",
+		background: "#E6E6F2",
+		cells: "white",
+		text: "black"
+	}) 
+{
+	let _self = {};
 	_self.selector = selector;
 	_self.accessElement = document.querySelector(selector);
 
@@ -27,9 +38,15 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 	_self.customization = {
 		draggable: draggable,
 		minimizable: minimizable,
-		type: type
+		type: type,
+		theme: theme
 	}
 
+	/**
+	 * Creates calendar container and provides initial styling.
+	 *
+	 * @function
+	 */
 	_self.initCalendar = () => {
 		const calendarContainer = document.createElement("div");
 		_self.calendar.container = calendarContainer;
@@ -44,6 +61,13 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		document.body.appendChild(_self.calendar.container);
 	}
 
+	/**
+	 * Updates the calendar to implement any changes in the _self.calendar object
+	 *
+	 * @function
+	 * @param {Date} calendarDate Date instance specifying the current date of the calendar
+	 * @param {boolean} firstCall Boolean indiciting first call of updateCalendar
+	 */
 	_self.updateCalendar = (calendarDate, firstCall) => {
 
 		// clear the calendar
@@ -314,6 +338,11 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		}
 	}
 
+	/**
+	* Toggles the calendars display style.
+	*
+	* @function
+	*/
 	_self.toggleCalendar = function() {
 		if (_self.calendar.container.style.display === "none") {
 			_self.calendar.container.style.display = "block";
@@ -322,26 +351,52 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		}
 	}
 
+	/**
+	* Updates the calendar to the next month.
+	*
+	* @function
+	*/
 	_self.nextMonth = function () {
 		_self.calendar.currentPageDate.setMonth(_self.calendar.currentPageDate.getMonth()+1);
 		_self.updateCalendar(_self.calendar.currentPageDate, false);
 	}
 
+	/**
+	* Updates the calendar to the last month.
+	*
+	* @function
+	*/
 	_self.previousMonth = function () {
 		_self.calendar.currentPageDate.setMonth(_self.calendar.currentPageDate.getMonth()-1);
 		_self.updateCalendar(_self.calendar.currentPageDate, false);
 	}
 
+	/**
+	* Updates the calendar to be minimized.
+	*
+	* @function
+	*/
 	_self.minimize = function () {
 		_self.calendar.minimized = true;
 		_self.updateCalendar(_self.calendar.currentPageDate, false);
 	}
 
+	/**
+	* Updates the calendar to be expanded.
+	*
+	* @function
+	*/
 	_self.expand = function () {
 		_self.calendar.minimized = false;
 		_self.updateCalendar(_self.calendar.currentPageDate, false);
 	}
 
+	/**
+	* Creates a new reminder in the calendar.
+	*
+	* @function
+	* @returns {boolean} indicating whether the form information was validated
+	*/
 	_self.submitNewReminder = function () {
 		if(_self.calendar.currentReminder.date === null || _self.calendar.currentReminder.label === null) {
 			alert("Please fill in all the required information to set a reminder!");
@@ -365,6 +420,14 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		}
 	}
 
+	// draggable element code: https://www.w3schools.com/howto/howto_js_draggable.asp
+
+	/**
+	* Makes an element draggable
+	*
+	* @function
+	* @param {element} element the element
+	*/
 	_self.makeDraggable = function (element) {
 		let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 		element.onmousedown = startDrag;
@@ -372,11 +435,11 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		function startDrag(e) {
 			e = e || window.event;
 			e.preventDefault();
-			// get the mouse cursor position at startup:
+
 			pos3 = e.clientX;
 			pos4 = e.clientY;
 			document.onmouseup = stopDrag;
-			// call a function whenever the cursor moves:
+
 			document.onmousemove = drag;
 		}
 
@@ -400,16 +463,34 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		}
 	}
 
+	/**
+	* Makes an element undraggable.
+	*
+	* @function
+	* @param {element} element the element
+	*/
 	_self.unMakeDraggable = function (element) {
 		element.onmousedown = null;
 	}
 
+	/**
+	* Imports the reminders from the user.
+	*
+	* @function
+	* @param {Object} reminders an array of reminder objects
+	*/
 	_self.importReminders = function (reminders) {
 		_self.calendar.reminders = reminders;
 		_self.updateCalendar(_self.calendar.currentPageDate, false);
 		_self.calendar.container.style.display = "none";  
 	}
 
+	/**
+	* Exports the reminders to the user
+	*
+	* @function
+	* @returns {Object} an array of reminder objects
+	*/
 	_self.exportReminders = function () {
 		return _self.calendar.reminders;
 	}
@@ -495,26 +576,30 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 						height: "94%",
 						borderCollapse: "collapse"
 					},
-					"td, th" : {
-						border: "1px solid black", //#E6E6F2",
-						padding: "5px",
-						width: "14%",
-						height: "12%",
-					},
 					"th" : {
 						fontWeight: "bold",
 						fontSize: "150%",
-						backgroundColor: "#a6a6a6"
+						backgroundColor: _self.customization.theme.secondary,
+						border: "1px solid " + _self.customization.theme.text,
+						padding: "5px",
+						width: "14%",
+						height: "12%",
+						color: _self.customization.theme.text
 					},
 					"td" : {
 						textAlign: "left",
 						verticalAlign: "top",
 						fontSize: "120%",
-						backgroundColor: "#FFFFFF"
+						backgroundColor: _self.customization.theme.cells,
+						border: "1px solid " + _self.customization.theme.text,
+						padding: "5px",
+						width: "14%",
+						height: "12%",
+						color: _self.customization.theme.text
 					},
 					"": {
 						fontFamily: "Arial, Helvetica, sans-serif",
-						backgroundColor: "#E6E6F2",
+						backgroundColor: _self.customization.theme.background,
 						padding: "30px",
 						paddingBottom: "30px",
 						position: "absolute",
@@ -527,10 +612,10 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 						zIndex: "10000"
 					},
 					"#betaCalendarDateRow": {
-						backgroundColor: "#99d6ff",
+						backgroundColor: _self.customization.theme.main,
 					},
 					"#betaCalendarCurrentDay": {
-						backgroundColor: "#99d6ff"
+						backgroundColor: _self.customization.theme.main
 					},
 					"img": {
 						width: "100%",
@@ -615,10 +700,14 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 						verticalAlign: "top"
 					},
 					"#betaCalendarAddReminderContainer p": {
-						top: "0%"
+						top: "0%",
+						color: _self.customization.theme.text
 					},
 					"#betaCalendarAddReminderForm input, select": {
-						marginRight: "10px"
+						marginRight: "10px",
+					},
+					"#betaCalendarAddReminderForm label": {
+						color: _self.customization.theme.text
 					},
 					"#betaCalendarAddReminderTextInput": {
 						zIndex: "100"
