@@ -16,31 +16,11 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		currentYpos: null,
 		minimized: false,
 		reminders: [
-			{
-				date: new Date(2021, 2, 17),
-				label: "Do 309 library!",
-				urgency: 3
-			},
-			{
-				date: new Date(2021, 2, 18),
-				label: "Do 309 example page!",
-				urgency: 2
-			},
-			{
-				date: new Date(2021, 2, 19),
-				label: "Do 309 pdf!",
-				urgency: 1
-			},
-			{
-				date: new Date(2021, 2, 19),
-				label: "Fix sleep!",
-				urgency: 2
-			}
 		],
 		currentReminder: {
 			date: null,
 			label: null,
-			urgency: null
+			urgency: 1
 		}
 	}
 
@@ -363,12 +343,11 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 	}
 
 	_self.submitNewReminder = function () {
-		if(_self.calendar.currentReminder.date === null || _self.calendar.currentReminder.label === null || _self.calendar.currentReminder.urgency === null) {
+		if(_self.calendar.currentReminder.date === null || _self.calendar.currentReminder.label === null) {
 			alert("Please fill in all the required information to set a reminder!");
 
 			_self.calendar.currentReminder.date = null;
 			_self.calendar.currentReminder.label = null;
-			_self.calendar.currentReminder.urgency = null;
 
 			return false;
 		} else {
@@ -383,13 +362,13 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 
 			_self.calendar.currentReminder.date = null;
 			_self.calendar.currentReminder.label = null;
-			_self.calendar.currentReminder.urgency = null;
+			_self.calendar.currentReminder.urgency = 1;
 
 			return true;
 		}
 	}
 
-	_self.makeDraggable = function dragElement(element) {
+	_self.makeDraggable = function (element) {
 		let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 		element.onmousedown = startDrag;
 
@@ -424,10 +403,18 @@ function BetaCalendar(selector, draggable = "false", minimizable = "false", type
 		}
 	}
 
-	_self.unMakeDraggable = function dragElement(element) {
+	_self.unMakeDraggable = function (element) {
 		element.onmousedown = null;
 	}
 
+	_self.importReminders = function (reminders) {
+		_self.calendar.reminders = reminders;
+		_self.updateCalendar(_self.calendar.currentPageDate, true); 
+	}
+
+	_self.exportReminders = function () {
+		return _self.calendar.reminders;
+	}
 
 	const styling = {
 		themes: {
