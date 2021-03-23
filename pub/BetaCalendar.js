@@ -117,6 +117,8 @@ function BetaCalendar(selector,
 						let cellDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth(), day);
 						if (firstWeek && j < gap || day > maxDay) {
 							cell.appendChild(document.createTextNode(""));
+							row.appendChild(cell);
+							continue;
 						}
 						else {
 							cell.appendChild(document.createTextNode(day));
@@ -124,33 +126,33 @@ function BetaCalendar(selector,
 								cell.id = "betaCalendarCurrentDay";
 							}
 							day++;
-						}
 
-						if (!_self.calendar.minimized) {
+							if (!_self.calendar.minimized) {
 
-							const todaysReminders = _self.calendar.reminders.filter(reminder => reminder.date.toDateString() === cellDate.toDateString());
-
-
-							if (todaysReminders.length != 0) {
-								let reminderList = document.createElement("ul");
-								reminderList.id = "betaCalendarReminderList";
-								todaysReminders.map(reminder => {
-									let reminderText = document.createElement("li");
-									reminderText.textContent = reminder.label;
-									reminderText.id = "betaCalendarReminderUrgency" + reminder.urgency;
-
-									let reminderDot = document.createElement("p");
-
-									reminderText.appendChild(reminderDot);
-									reminderList.appendChild(reminderText);
-								})
-
-								cell.appendChild(reminderList);
+								const todaysReminders = _self.calendar.reminders.filter(reminder => reminder.date.toDateString() === cellDate.toDateString());
+	
+	
+								if (todaysReminders.length != 0) {
+									let reminderList = document.createElement("ul");
+									reminderList.id = "betaCalendarReminderList";
+									todaysReminders.map(reminder => {
+										let reminderText = document.createElement("li");
+										reminderText.textContent = reminder.label;
+										reminderText.id = "betaCalendarReminderUrgency" + reminder.urgency;
+	
+										let reminderDot = document.createElement("p");
+	
+										reminderText.appendChild(reminderDot);
+										reminderList.appendChild(reminderText);
+									})
+	
+									cell.appendChild(reminderList);
+								}
+	
 							}
-
+	
+							row.appendChild(cell);
 						}
-
-						row.appendChild(cell);
 				}
 	
 				firstWeek = false;
@@ -199,7 +201,6 @@ function BetaCalendar(selector,
 			
 			addReminderTextInput.addEventListener("input", (e) => {
 				_self.calendar.currentReminder.label = addReminderTextInput.value;
-				console.log(addReminderTextInput.value);
 			})
 
 			let addReminderUrgencyLabel = document.createElement("label");
@@ -221,7 +222,6 @@ function BetaCalendar(selector,
 						_self.calendar.currentReminder.urgency = 3;
 						break;	
 				}
-				console.log(_self.calendar.currentReminder.urgency);
 			}
 
 			let LowPrioOption = document.createElement("option");
@@ -523,7 +523,7 @@ function BetaCalendar(selector,
 					"": {
 						fontFamily: "Arial, Helvetica, sans-serif",
 						backgroundColor: _self.customization.theme.background,
-						padding: "25px 5px 30px 5px",
+						padding: "28px 5px 30px 5px",
 						position: "absolute",
 						width: "400px",
 						left: "50%",
@@ -604,8 +604,7 @@ function BetaCalendar(selector,
 					"": {
 						fontFamily: "Arial, Helvetica, sans-serif",
 						backgroundColor: _self.customization.theme.background,
-						padding: "30px",
-						paddingBottom: "30px",
+						padding: "33px 30px 30px 30px",
 						position: "absolute",
 						width: "80%",
 						height: "88%",

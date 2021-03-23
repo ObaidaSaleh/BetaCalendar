@@ -10,7 +10,7 @@ const app = express();
 app.use(express.static(__dirname + "/pub"));
 
 app.get("/examples.html", (req, res) => {
-  res.send("<h1>This should be the root route!</h1>");
+  res.send("");
 });
 
 const port = process.env.PORT || 5000;
