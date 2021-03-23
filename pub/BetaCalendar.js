@@ -503,22 +503,26 @@ function BetaCalendar(selector,
 						margin: "auto",
 						borderCollapse: "collapse"
 					},
-					"td, th" : {
-						border: "1px solid black",
-						padding: "5px",
-						textAlign: "center",
-						minWidth: "40px"
-					},
 					"th" : {
 						fontWeight: "bold",
-						backgroundColor: "#a6a6a6"
+						backgroundColor: _self.customization.theme.secondary,
+						border: "1px solid " + _self.customization.theme.text,
+						padding: "5px",
+						textAlign: "center",
+						minWidth: "40px",
+						color: _self.customization.theme.text
 					},
 					"td" : {
-						backgroundColor: "#FFFFFF"
+						backgroundColor: _self.customization.theme.cells,
+						border: "1px solid " + _self.customization.theme.text,
+						padding: "5px",
+						textAlign: "center",
+						minWidth: "40px",
+						color: _self.customization.theme.text
 					},
 					"": {
 						fontFamily: "Arial, Helvetica, sans-serif",
-						backgroundColor: "#E6E6F2",
+						backgroundColor: _self.customization.theme.background,
 						padding: "25px 5px 30px 5px",
 						position: "absolute",
 						width: "400px",
@@ -529,10 +533,10 @@ function BetaCalendar(selector,
 						zIndex: "10000"
 					},
 					"#betaCalendarDateRow": {
-						backgroundColor: "#99d6ff"
+						backgroundColor: _self.customization.theme.main,
 					},
 					"#betaCalendarCurrentDay": {
-						backgroundColor: "#99d6ff"
+						backgroundColor: _self.customization.theme.main,
 					},
 					"img": {
 						width: "100%",

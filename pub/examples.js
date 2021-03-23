@@ -31,7 +31,7 @@ function example() {
   const calendar3 = BetaCalendar("#miniAndDragCalendar", true, true, "basic");
   const calendar4 = BetaCalendar("#importedRemindersCalendar", true, true, "basic");
 
-  const calendar5 = BetaCalendar("#nightCalendar", false, false, "basic", 
+  const calendar5 = BetaCalendar("#nightCalendar", true, true, "basic", 
   {
 		main: "#006bb3",
     secondary: "#404040",
