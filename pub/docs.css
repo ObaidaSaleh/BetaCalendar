@@ -310,15 +310,16 @@ pre{
     background-color: #323f4c;
     border-color: #323f4c;
     color: #fff;
-    padding: 0 28px 2em;
+    padding: 0 0px 2em;
     margin: 0;
+    margin-left: 10px;
     width: 50%;
     float: right;
     clear: right;
     box-sizing: border-box;
 }
 .content pre code, .content pre {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.5;
 }
 .content blockquote,
@@ -329,6 +330,7 @@ pre{
 }
 .content pre code{
     margin-top: -2em;
+    margin-left: -10px;
 }
 .content table {
     font-size: 0.825em;
