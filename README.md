@@ -13,6 +13,8 @@ To use BetaCalendar you must first include two javascript files at the top of yo
 ```javascript
 <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script defer type="text/javascript" src='BetaCalendar.js'></script>
 ```
 
