@@ -87,11 +87,36 @@
 
     <pre>
       <code>
+        const reminders = [
+          {
+            date: new Date(2021, 2, 17),
+            label: "Do 309 library!",
+            urgency: 3
+          },
+          {
+            date: new Date(2021, 2, 18),
+            label: "Do 309 example page!",
+            urgency: 2
+          },
+          {
+            date: new Date(2021, 2, 19),
+            label: "Do 309 pdf!",
+            urgency: 1
+          },
+          {
+            date: new Date(2021, 2, 19),
+            label: "Fix sleep!",
+            urgency: 2
+          }
+        ]
+
         const calendar4 = new BetaCalendar("#importedRemindersCalendar", 
                                             true, 
                                             true, 
                                             "basic", 
                                             true);
+        
+        calendar4.importReminders(reminders);
       </code>
     </pre>
 
