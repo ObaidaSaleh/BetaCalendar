@@ -31,4 +31,4 @@ Here you can see a quick example of a basic implementation of a BetaCalendar wid
 ```javascript
 const calendar1 = new BetaCalendar("#normalCalendar");
 ```
-All you need to do is include the library code, and then use the constructor with a single parameter of the id of the component that you would like to trigger the toggling of the module.
+All you need to do is call the constructor with an id as a parameter. The id is a required input and tells the library what component to attach the calendar to, so that it toggles when that component is clicked.
