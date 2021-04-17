@@ -26,12 +26,12 @@ function example() {
   ]
 
 
-  const calendar1 = BetaCalendar("#normalCalendar", false, false, "basic");
-  const calendar2 = BetaCalendar("#minimizableCalendar", false, true, "basic");
-  const calendar3 = BetaCalendar("#miniAndDragCalendar", true, true, "basic");
-  const calendar4 = BetaCalendar("#importedRemindersCalendar", true, true, "basic");
+  const calendar1 = new BetaCalendar("#normalCalendar", false, false, "basic");
+  const calendar2 = new BetaCalendar("#minimizableCalendar", false, true, "basic");
+  const calendar3 = new BetaCalendar("#miniAndDragCalendar", true, true, "basic");
+  const calendar4 = new BetaCalendar("#importedRemindersCalendar", true, true, "basic");
 
-  const calendar5 = BetaCalendar("#nightCalendar", true, true, "basic", 
+  const calendar5 = new BetaCalendar("#nightCalendar", true, true, "basic", 
   {
 		main: "#006bb3",
     secondary: "#404040",
@@ -42,8 +42,11 @@ function example() {
   );
 
   calendar4.importReminders(reminders);
-
-  // console.log(calendar4.exportReminders());
+  console.log(calendar1.exportReminders());
+  console.log(calendar2.exportReminders());
+  console.log(calendar3.exportReminders());
+  console.log(calendar4.exportReminders());
+  console.log(calendar5.exportReminders());
 }
 
 example();
