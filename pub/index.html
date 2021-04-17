@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>BetaCalendar Example</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="examples.css">
+
+<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script defer type="text/javascript" src='BetaCalendar.js'></script>
+<script defer type="text/javascript" src="examples.js"></script>
+
+<body>
+
+<div>
+  <nav class="sidebar"><br>
+    <div >
+      <h3><b>BetaCalendar - Example Page</b></h3>
+    </div>
+
+    <hr>
+
+    <a href="index.html">Examples</a>
+    <a href="docs.html">API Documentation</a>
+
+    <hr>
+
+    <div>
+      <h4 >Calendars!</h4> 
+      <p id="normalCalendar">Simple Calendar With No TodoList</p> 
+      <p id="minimizableCalendar">Minimizable Calendar</p> 
+      <p id="miniAndDragCalendar">Minimizable and Draggable Calendar</p>
+      <p id="importedRemindersCalendar">Calendar with Imported Reminders</p>
+      <p id="nightCalendar"><span>&#9790;</span> Nightmode <span> &#9790; </span> </p>
+    </div>
+
+    <hr>
+  </nav>
+
+
+<div class="main">
+
+  <!-- Header -->
+  <div style="margin-top:60px" id="showcase">
+    <h1 ><b>BetaCalendar - Create simple yet appealing organization widgets </b></h1>
+    <p>
+      Welcome to BetaCalendar! This library is designed to provide developers with easy to use organization-based widgets. Take a look at the sidebar to the left to see various examples of BetaCalendar, or go to the documentation page to learn how BetaCalendar works! 
+    </p>
+  </div>
+
+  <div id="services" style="margin-top:60px">
+    <h1><b>The code behind the examples:</b></h1>
+
+    <h2><b>Simple Calendar With No TodoList</b></h2>
+
+    <pre>
+      <code>
+        const calendar1 = new BetaCalendar("#normalCalendar");
+      </code>
+    </pre>
+
+    <h2><b>Minimizable Calendar</b></h2>
+
+    <pre>
+      <code>
+        const calendar2 = new BetaCalendar("#minimizableCalendar",
+                                            false, 
+                                            true, 
+                                            "basic", 
+                                            true);
+      </code>
+    </pre>
+
+    <h2><b>Minimizable and Draggable Calendar</b></h2>
+
+    <pre>
+      <code>
+        const calendar3 = new BetaCalendar("#miniAndDragCalendar", 
+                                            true, 
+                                            true, 
+                                            "basic", 
+                                            true);
+      </code>
+    </pre>
+
+    <h2><b>Calendar with Imported Reminders</b></h2>
+
+    <pre>
+      <code>
+        const calendar4 = new BetaCalendar("#importedRemindersCalendar", 
+                                            true, 
+                                            true, 
+                                            "basic", 
+                                            true);
+      </code>
+    </pre>
+
+    <h2><b><span>&#9790;</span> Nightmode <span> &#9790; </span> </b></h2>
+
+    <pre>
+      <code>
+        const calendar5 = new BetaCalendar("#nightCalendar", 
+                                            true, true, 
+                                            "basic", 
+                                            true,
+                                            {
+                                              main: "#006bb3",
+                                              secondary: "#404040",
+                                              background: "#121212",
+                                              cells: "#181818",
+                                              text: "white"
+                                            });
+      </code>
+    </pre>
+
+    </p>
+  </div>
+
+</body>
+</html>
+

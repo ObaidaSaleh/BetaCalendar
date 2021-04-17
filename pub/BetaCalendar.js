@@ -5,9 +5,10 @@ console.log('Loading BetaCalendar.js');
 (function(global, document) { 
 
 	function BetaCalendar(selector, 
-		draggable = "false", 
-		minimizable = "false", 
+		draggable = false, 
+		minimizable = false, 
 		type = "basic", 
+		todoListEnabled = false,
 		theme= {
 			main: "#99d6ff",
 			secondary: "#a6a6a6",
@@ -21,13 +22,15 @@ console.log('Loading BetaCalendar.js');
 			draggable,
 			minimizable,
 			type,
+			todoListEnabled,
 			theme);
 	}
 
 	function privateCalendarInit(selector, 
-		draggable = "false", 
-		minimizable = "false", 
+		draggable = false, 
+		minimizable = false, 
 		type = "basic", 
+		todoListEnabled = true,
 		theme= {
 			main: "#99d6ff",
 			secondary: "#a6a6a6",
@@ -69,6 +72,7 @@ console.log('Loading BetaCalendar.js');
 		draggable: draggable,
 		minimizable: minimizable,
 		type: type,
+		todoListEnabled: todoListEnabled,
 		theme: theme
 	}
 
@@ -372,19 +376,20 @@ console.log('Loading BetaCalendar.js');
 						miniImg.src = "./images/minimize.png";
 						miniButton.appendChild(miniImg);
 
-						let todoListButton = document.createElement("button");
-						todoListButton.id = "betaCalendarTodoListButton";
-						todoListButton.onclick = _self.todoListToggle;
-						let todoListImg = document.createElement("img");
-						todoListImg.src = "./images/todo-list.png";
-						todoListButton.appendChild(todoListImg);
-
 						_self.calendar.container.appendChild(miniButton);
-
-						_self.calendar.container.appendChild(todoListButton);
 					}
 				}
-				
+
+				if (!_self.calendar.minimized && _self.customization.todoListEnabled) {
+					let todoListButton = document.createElement("button");
+					todoListButton.id = "betaCalendarTodoListButton";
+					todoListButton.onclick = _self.todoListToggle;
+					let todoListImg = document.createElement("img");
+					todoListImg.src = "./images/todo-list.png";
+					todoListButton.appendChild(todoListImg);
+
+					_self.calendar.container.appendChild(todoListButton);
+				}
 		
 				_self.calendar.container.appendChild(leftButton);
 				_self.calendar.container.appendChild(exitButton);

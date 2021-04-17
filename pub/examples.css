@@ -1,5 +1,5 @@
 ﻿body {
-    font-family: Roboto, Arial, Helvetica, sans-serif; 
+    font-family: 'Roboto', sans-serif;
 }
 
 .sidebar {
@@ -30,7 +30,28 @@
     background-color: white;
 }
 
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #FFF;
+    display: block;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.sidebar a:hover {
+    color: #000;
+    background-color: white;
+}
+
 .sidebar h3 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size:100%;
+    font: inherit;
+    vertical-align: baseline;
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 30px;
@@ -57,4 +78,47 @@
 .main {
     margin-left:340px;
     margin-right:40px;
+}
+
+.navbar {
+    position: relative;
+    margin-left: 10px;
+    height: 80px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    z-index: 100;
+    transition: background-color 1s ease 0s;
+}
+
+pre code {
+    font-size: 18px;
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+    padding: 20px;
+}
+/* 
+pre {
+    background: #333;
+    white-space: pre;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+code {
+    font-family: "Inconsolata","Monaco","Consolas","Andale Mono","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+    display: block;
+    margin: 0 0 0 60px;
+    padding: 15px 16px 14px;
+    border-left: 1px solid #555;
+    overflow-x: auto;
+    font-size: 18px;
+    line-height: 19px;
+    color: #ddd;
+} */
+
+
+h1 {
+    margin-bottom: 50px;
 }

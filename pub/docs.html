@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>BetaCalendar Example</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="docs.css">
+<link rel="stylesheet" href="syntaxHighlight.css">
+
+<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script defer type="text/javascript" src='BetaCalendar.js'></script>
+<script defer type="text/javascript" src="examples.js"></script>
+
+<!-- The template for this docs page is from: https://github.com/ticlekiwi/API-Documentation-HTML-Template -->
+
+<body>
+
+<div>
+  <nav class="sidebar"><br>
+    <div >
+      <h3><b>BetaCalendar - API Docs</b></h3>
+    </div>
+
+    <hr>
+
+    <a href="index.html">Examples</a>
+    <a href="docs.html">API Documentation</a>
+
+    <hr>
+  </nav>
+
+
+<div class="main">
+
+    <div class="content-page">
+        <div class="content-code"></div>
+        <div class="content">
+            <div class="overflow-hidden content-section" id="content-get-started">
+
+                <h1 id="get-started">Getting started / Installation</h1>
+
+                <pre>
+                    <xmp>
+<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                    
+<script defer type="text/javascript" src='BetaCalendar.js'></script>
+                    </xmp>
+                </pre>
+
+                <p>
+                    BetaCalendar offers various organizational-based widgets with simple to implement customization.
+                </p>
+                <p>
+                    To use BetaCalendar you must first include two javascript files at the top of your page, one is the BetaCalendar library, and the other is jquery. (jquery version 3.5.1 was used for the creation of BetaCalendar)
+                </p>
+            </div>
+
+            <div class="overflow-hidden content-section" id="content-basic-code">
+
+                <h1 id="get-started">Basic Implementation</h1>
+
+                <pre>
+                    <xmp>
+const calendar1 = new BetaCalendar("#normalCalendar");
+                    </xmp>
+                </pre>
+
+                <p>
+                    Initializaing a basic version of BetaCalendar is very simple. The basic version has the base colour scheme, and no extended functionality such as the TodoList or the minimizable features.
+                </p>
+                <p>
+                    To use BetaCalendars basic module, create a new instance of BetaCalendar using it's constructor and pass in the id of the component that you would like to be the trigger for toggling the module.
+                </p>
+            </div>
+
+            <div class="overflow-hidden content-section" id="content-get-characters">
+                <h2 id="get-characters">Constructor</h2>
+
+                <pre>
+                    <xmp>
+const calendar1 = new BetaCalendar("#normalCalendar");
+const calendar2 = new BetaCalendar("#minimizableCalendar", false, true, "basic", true);
+const calendar3 = new BetaCalendar("#miniAndDragCalendar", true, true, "basic", true);
+const calendar4 = new BetaCalendar("#importedRemindersCalendar", true, true, "basic", true);
+
+const calendar5 = new BetaCalendar("#nightCalendar", true, true, "basic", true,
+{
+main: "#006bb3",
+secondary: "#404040",
+background: "#121212",
+cells: "#181818",
+text: "white"
+});
+                    </xmp>
+                </pre>
+
+                <p> The BetaCalendar constructor can take various parameter inputs to customize the calendar:
+                </p>
+                <br>
+                
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Functionality</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>selector</td>
+                        <td>String</td>
+                        <td>Required Parameter</td>
+                        <td>The id of the desired component to attach calendar toggle functionality to. Must include "#" at the beginning for ids.</td>
+                    </tr>
+                    <tr>
+                        <td>draggable</td>
+                        <td>Boolean</td>
+                        <td>false</td>
+                        <td>Specifies whether a minimized calendar is draggable or not. If enabled, the minimized calendar can be dragged around and also pinned.</td>
+                    </tr>
+                    <tr>
+                        <td>minimizable</td>
+                        <td>Boolean</td>
+                        <td>false</td>
+                        <td>
+                            Specifies whether a calendar is minimizable or not. If enabled, allows a calendar to be minimized into a more condensed version.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>String</td>
+                        <td>"basic"</td>
+                        <td>
+                            Specifies the type of widget for the calendar module, current values are only "basic".
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>todoListEnabled</td>
+                        <td>Boolean</td>
+                        <td>false</td>
+                        <td>Specifies whether a calendar has a todoList component or not. When enabled, the calendar will have a button on the bottom right that transforms the widget into a todoList.</td>
+                    </tr>
+                    <tr>
+                        <td>theme</td>
+                        <td>theme Object</td>
+                        <td>See below</td>
+                        <td>Specifies the colour scheme for the calendar, divided into "main", "secondary", "background", "cells", "text".</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="overflow-hidden content-section" id="content-get-characters">
+                <h3 id="get-characters">theme parameter</h4>
+
+                    <pre>
+                        <xmp>
+
+{
+    main: "#006bb3",
+    secondary: "#404040",
+    background: "#121212",
+    cells: "#181818",
+    text: "white"
+}
+                        </xmp>
+                    </pre>
+
+
+                <p> The BetaCalendar constructor can also take a theme parameter to specify the colour scheme of the widget:
+                </p>
+                <br>
+                
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Theme Section</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Functionality</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>main</td>
+                        <td>String</td>
+                        <td>"#99d6ff"</td>
+                        <td>Controls the main colour for the important parts of the calendar, such as the current day of the month, and the current month and year header.</td>
+                    </tr>
+                    <tr>
+                        <td>secondary</td>
+                        <td>String</td>
+                        <td>"#a6a6a6"</td>
+                        <td>Controls the secondary colour for the calendar, components such as days of the week under the header.</td>
+                    </tr>
+                    <tr>
+                        <td>background</td>
+                        <td>String</td>
+                        <td>
+                            "#E6E6F2"
+                        </td>
+                        <td>Controls the background colour for the calendar module.</td>
+                    </tr>
+                    <tr>
+                        <td>cells</td>
+                        <td>String</td>
+                        <td>
+                            "white"
+                        </td>
+                        <td>Controls the background colour for the main cells.</td>
+                    </tr>
+                    <tr>
+                        <td>text</td>
+                        <td>String</td>
+                        <td>
+                            "black"
+                        </td>
+                        <td>Controls the colour of the text.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="overflow-hidden content-section" id="content-get-characters">
+                <h2 id="get-characters">API Functions</h2>
+
+                <pre>
+                    <xmp>
+const reminders = [
+    {
+    date: new Date(2021, 2, 17),
+    label: "Do 309 library!",
+    urgency: 3
+    },
+    {
+    date: new Date(2021, 2, 18),
+    label: "Do 309 example page!",
+    urgency: 2
+    },
+    {
+    date: new Date(2021, 2, 19),
+    label: "Do 309 pdf!",
+    urgency: 1
+    },
+    {
+    date: new Date(2021, 2, 19),
+    label: "Fix sleep!",
+    urgency: 2
+    }
+]
+
+calendar4.importReminders(reminders);
+
+console.log(calendar1.exportReminders());
+                    </xmp>
+                </pre>
+
+                <p> BetaCalendar functions developers can use to interact with the calendar modules:
+                </p>
+                <br>
+                
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>Arguments</th>
+                        <th>Return</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>importReminders()</td>
+                        <td>reminders[] (Reminder Object)</td>
+                        <td> - </td>
+                        <td>Allows the developer to preset the reminders for a specific calendar, must be in the form of a reminder object as seen below.</td>
+                    </tr>
+                    <tr>
+                        <td>exportReminders()</td>
+                        <td> - </td>
+                        <td> Reminder Object </td>
+                        <td>Allows the developer to export the current reminders in a calendar to be used elsewhere, is in the form of a Reminder Object array as seen before</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="get-characters">Reminder Object</h3>
+
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>date</td>
+                        <td>JavaScript Date() Object</td>
+                        <td>The date of the reminder.</td>
+                    </tr>
+                    <tr>
+                        <td>label</td>
+                        <td>String</td>
+                        <td>The label for the reminder.</td>
+                    </tr>
+                    <tr>
+                        <td>urgency</td>
+                        <td>Number : 1 || 2 || 3</td>
+                        <td>The urgency of the reminder, can be either 1 for low, 2 for medium, or 3 for high.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+    </div>
+  </div>
+
+</body>
+</html>
+
